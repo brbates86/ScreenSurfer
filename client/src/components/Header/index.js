@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Box, Flex, Text, Button } from "@chakra-ui/react"
+import { Box, Flex, Text, Button, Image } from "@chakra-ui/react"
 // import Auth from '../../utils/auth';
 // import Logo from "./public/logo.png";
 // import { CloseIcon, MenuIcon } from ".../Icons"
@@ -37,7 +37,7 @@ const Header = (props) => {
       {...props}
     >
       <Flex align="center">
-       
+      <Image src="/screensurferlogo.png" w={200} alt="logo-image"/>
       </Flex>
 
       <Box display={{ base: "block", md: "none" }} onClick={toggleMenu}>
