@@ -63,10 +63,10 @@ const Header = (props) => {
               size="sm"
               rounded="md"
               color={["red.900", "red.950", "red.400", "whiteAlpha.900"]}
-              bg={["whiteAlpha.500", "whiteAlpha.900", "whiteAlpha.900", "green.300"]}
+              bg={["whiteAlpha.500", "whiteAlpha.900", "whiteAlpha.900", "blue.300"]}
               _hover={{
                 bg: [
-                  "red.400",
+                  "green.400",
                   "primary.500",
                   "primary.600",
                   "primary.600",
