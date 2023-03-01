@@ -1,5 +1,6 @@
 const {Schema, modal} = require('mongoose');
 const bcrypt = require('bcrypt');
+const movieSchema = require('./movies');
 
 const userSchema = new Schema({
     username: {
@@ -12,7 +13,7 @@ const userSchema = new Schema({
        type: String,
        requiered: true,
        unique: true,
-       match: [/.+@.+\..+/, 'Must match an email address!'],
+       match: [/.+@.+\..+/]
     },
 
     password: {
@@ -21,6 +22,7 @@ const userSchema = new Schema({
         match:[A-Za-z],
         minlength: 5,
     },
+    savedMovies:[movieSchema]
 })
 
 userSchema.pre('save', async function (next) {
