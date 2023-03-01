@@ -22,4 +22,4 @@ const movieSchema = new Schema(
         }
     }
 )
-module.exports = movieSchema
+module.exports = movieSchema;
