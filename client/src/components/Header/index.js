@@ -63,12 +63,12 @@ const Header = (props) => {
           <MenuItems to="/signup" isLast>
             <Button
               size="sm"
-              rounded="md"
+              rounded="sm"
               color={["red.900", "red.950", "red.400", "whiteAlpha.900"]}
-              bg={["whiteAlpha.500", "whiteAlpha.900", "whiteAlpha.900", "blue.300"]}
+              bg={["whiteAlpha.500", "whiteAlpha.900", "whiteAlpha.900", "green.400"]}
               _hover={{
                 bg: [
-                  "green.400",
+                  "blue.300",
                   "primary.500",
                   "primary.600",
                   "primary.600",
