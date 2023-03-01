@@ -1,3 +1,3 @@
 const User = require('./User.js');
-const movieSchema= require('./movies')
-module.exports = { User, movieSchema };
+const movies = require('./movies')
+module.exports = { User, movies };

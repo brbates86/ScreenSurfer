@@ -1,6 +1,6 @@
-const {Schema, modal} = require('mongoose');
+const {Schema, model} = require('mongoose');
 const bcrypt = require('bcrypt');
-const movieSchema = require('./movies');
+
 
 const userSchema = new Schema({
     username: {
@@ -22,7 +22,10 @@ const userSchema = new Schema({
         match:[A-Za-z],
         minlength: 5,
     },
-    savedMovies:[movieSchema]
+    savedMovies:{
+        type: Schema.Types.ObjectId,
+        ref: 'movies'
+    }
 })
 
 userSchema.pre('save', async function (next) {
