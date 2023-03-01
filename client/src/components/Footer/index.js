@@ -56,7 +56,7 @@ export default function SmallWithSocial() {
         spacing={5}
         justify={{ base: 'center', md: 'space-between' }}
         align={{ base: 'center', md: 'center' }}>
-        <Text>© 2022 ScreenSurfer All Rights Reserved</Text>
+        <Text>© 2023 ScreenSurfer All Rights Reserved</Text>
         <Stack direction={'row'} spacing={6}>
           <SocialButton label={'Twitter'} href={'#'}>
             <FaTwitter />
