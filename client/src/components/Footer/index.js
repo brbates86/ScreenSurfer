@@ -1,5 +1,4 @@
 
-
 import {
   Box,
   chakra,
@@ -11,6 +10,7 @@ import {
 } from '@chakra-ui/react';
 import { FaInstagram, FaTwitter, FaGithub } from 'react-icons/fa';
 import { ReactNode } from 'react';
+
 
 
 const SocialButton = ({
@@ -49,19 +49,16 @@ export default function SmallWithSocial() {
       bg={useColorModeValue('blue.500', 'gray.900')}
       color={useColorModeValue('whiteAlpha.900', 'gray.200')}>
       <Container
-
-      
         as={Stack}
         maxW={'4xl'}
- 
         py={4}
         direction={{ base: 'column', md: 'row' }}
         spacing={5}
         justify={{ base: 'center', md: 'space-between' }}
         align={{ base: 'center', md: 'center' }}>
 
-        <Text>© 2023 ScreenSurfer All Rights Reserved</Text>
 
+        <Text>© 2023 ScreenSurfer All Rights Reserved</Text>
         <Stack direction={'row'} spacing={6}>
           <SocialButton label={'Twitter'} href={'#'}>
             <FaTwitter />
@@ -76,7 +73,5 @@ export default function SmallWithSocial() {
       </Container>
     </Box>
   );
-
 }
-
 

@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Box, Flex, Text, Button } from "@chakra-ui/react"
+
+import { Box, Flex, Text, Button, Image } from "@chakra-ui/react"
 // import Auth from '../../utils/auth';
-// import Logo from "./public/logo.png";
+
 // import { CloseIcon, MenuIcon } from ".../Icons"
 
 const MenuItems = (props) => {
@@ -37,7 +38,10 @@ const Header = (props) => {
       {...props}
     >
       <Flex align="center">
-       
+
+      <Image src="/screensurferlogo.png" w={200} alt="logo-image"/>
+
+
       </Flex>
 
       <Box display={{ base: "block", md: "none" }} onClick={toggleMenu}>
@@ -61,12 +65,14 @@ const Header = (props) => {
           <MenuItems to="/signup" isLast>
             <Button
               size="sm"
-              rounded="md"
+
+              rounded="sm"
               color={["red.900", "red.950", "red.400", "whiteAlpha.900"]}
-              bg={["whiteAlpha.500", "whiteAlpha.900", "whiteAlpha.900", "green.300"]}
+              bg={["whiteAlpha.500", "whiteAlpha.900", "whiteAlpha.900", "green.400"]}
               _hover={{
                 bg: [
-                  "red.400",
+                  "blue.300",
+             
                   "primary.500",
                   "primary.600",
                   "primary.600",
