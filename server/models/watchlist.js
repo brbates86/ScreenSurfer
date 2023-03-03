@@ -4,7 +4,7 @@ const watchlistSchema = new Schema({
     movies: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'movies'
+            ref: 'Movies'
         }
     ],
     userWatchlist: [{

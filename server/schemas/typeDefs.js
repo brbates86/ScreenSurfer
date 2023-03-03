@@ -6,14 +6,20 @@ const typeDefs = gql`
     name: String
     email: String
     password: String
+    watchlist: [Watchlist]!
   }
 
-  type movies {
+  type Movies {
     title: String!
     release: Date!
     description: String!
     screenTime: String!
     
+  }
+
+  type Watchlist {
+    movies: [movies]!
+    UserWatchlist: [User]!
   }
 
   type Auth {
@@ -32,7 +38,9 @@ const typeDefs = gql`
     addUser(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     removeUser(UserId: ID!): User
-    watchlist(title: String!, description: String!): movies
+    addWatchlist(title: String!, description: String!): Movies
+    
+    
   }
 `;
 

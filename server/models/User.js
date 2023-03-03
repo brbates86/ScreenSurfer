@@ -22,9 +22,9 @@ const userSchema = new Schema({
         match:[A-Za-z],
         minlength: 5,
     },
-    Watchists:{
+    watchists:{
         type: Schema.Types.ObjectId,
-        ref: 'movies'
+        ref: 'Watchlist'
     }
 })
 
