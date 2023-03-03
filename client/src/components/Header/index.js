@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Flex, Text, Button, Image } from "@chakra-ui/react"
 // import Auth from '../../utils/auth';
-// import Logo from "./public/logo.png";
 // import { CloseIcon, MenuIcon } from ".../Icons"
 
 const MenuItems = (props) => {
