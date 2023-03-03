@@ -19,8 +19,13 @@ const movieSchema = new Schema(
             type: String,
             required:true
 
+            
+        },
+        reviews: {
+            type: Schema.Types.ObjectId,
+            ref:'Review'
         }
     }
 );
-const movies = model('movieSchema', movieSchema)
-module.exports = movies;
+const Movies = model('movieSchema', movieSchema)
+module.exports = Movies;
