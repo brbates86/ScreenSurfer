@@ -22,7 +22,7 @@ const userSchema = new Schema({
         match:[A-Za-z],
         minlength: 5,
     },
-    savedMovies:{
+    Watchists:{
         type: Schema.Types.ObjectId,
         ref: 'movies'
     }
