@@ -9,6 +9,10 @@ const typeDefs = gql`
   }
 
   type movies {
+    title: String!
+    release: Date!
+    description: String!
+    screenTime: String!
     
   }
 
@@ -28,7 +32,7 @@ const typeDefs = gql`
     addUser(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     removeUser(UserId: ID!): User
-    saveMovies: 
+    watchlist(title: String!, description: String!): movies
   }
 `;
 
