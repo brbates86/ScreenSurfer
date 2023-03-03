@@ -54,6 +54,7 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+<<<<<<< HEAD
     // Make it so a logged in user can only remove a skill from their own profile
     addWatchlist: async (parent, args, {movies, userWatchlist} ,context) => {
       const watchlists = await Watchlist.create({movies, userWatchlist})
@@ -79,6 +80,8 @@ const resolvers = {
         }
        );
     },
+=======
+>>>>>>> main
   },
 };
 

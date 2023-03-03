@@ -1,48 +1,91 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import Auth from '../../utils/auth';
+import { Box, Flex, Text, Button, Image } from "@chakra-ui/react"
+// import Auth from '../../utils/auth';
 
-const Header = () => {
-  const logout = (event) => {
-    event.preventDefault();
-    Auth.logout();
-  };
+// import { CloseIcon, MenuIcon } from ".../Icons"
+
+const MenuItems = (props) => {
+  const { children, isLast, to = "/", ...rest } = props
   return (
-    <header className="bg-info text-dark mb-4 py-3 display-flex align-center">
-      <div className="container flex-column justify-space-between-lg justify-center align-center text-center">
-        <Link className="text-dark" to="/">
-          <h1 className="m-0" style={{ fontSize: '3rem' }}>
-            Tech Friends
-          </h1>
-        </Link>
-        <p className="m-0" style={{ fontSize: '1.75rem', fontWeight: '700' }}>
-          Meet your new programming pals.
-        </p>
-        <div>
-          {Auth.loggedIn() ? (
-            <>
-              <Link className="btn btn-lg btn-primary m-2" to="/me">
-                View My Profile
-              </Link>
-              <button className="btn btn-lg btn-light m-2" onClick={logout}>
-                Logout
-              </button>
-            </>
-          ) : (
-            <>
-              <Link className="btn btn-lg btn-primary m-2" to="/login">
-                Login
-              </Link>
-              <Link className="btn btn-lg btn-light m-2" to="/signup">
-                Signup
-              </Link>
-            </>
-          )}
-        </div>
-      </div>
-    </header>
-  );
-};
+    <Text
+      mb={{ base: isLast ? 0 : 8, sm: 0 }}
+      mr={{ base: 0, sm: isLast ? 0 : 8 }}
+      display="block"
+      {...rest}
+    >
+      <Link to={to}>{children}</Link>
+    </Text>
+  )
+}
 
-export default Header;
+const Header = (props) => {
+  const [show, setShow] = React.useState(false)
+  const toggleMenu = () => setShow(!show)
+
+  return (
+    <Flex
+      as="nav"
+      align="center"
+      justify="space-between"
+      wrap="wrap"
+      w="100%"
+      mb={8}
+      p={8}
+      bg={["whiteAlpha.900", "whiteAlpha.900", "whiteAlpha.900", "blue.500"]}
+      color={["whiteAlpha.700", "whiteAlpha.500", "whiteAlpha.500", "whiteAlpha.900"]}
+      {...props}
+    >
+      <Flex align="center">
+
+      <Image src="/screensurferlogo.png" w={200} alt="logo-image"/>
+
+
+      </Flex>
+
+      <Box display={{ base: "block", md: "none" }} onClick={toggleMenu}>
+       
+      </Box>
+
+      <Box
+        display={{ base: show ? "block" : "none", md: "block" }}
+        flexBasis={{ base: "100%", md: "auto" }}
+      >
+        <Flex
+          align={["center", "center", "center", "center"]}
+          justify={["center", "space-between", "flex-end", "flex-end"]}
+          direction={["column", "row", "row", "row"]}
+          pt={[4, 4, 0, 0]}
+        >
+          <MenuItems to="/">Home</MenuItems>
+          <MenuItems to="/search">Search</MenuItems>
+          <MenuItems to="/profile">Profile</MenuItems>
+          <MenuItems to="/pricing"></MenuItems>
+          <MenuItems to="/signup" isLast>
+            <Button
+              size="sm"
+
+              rounded="sm"
+              color={["red.900", "red.950", "red.400", "whiteAlpha.900"]}
+              bg={["whiteAlpha.500", "whiteAlpha.900", "whiteAlpha.900", "green.400"]}
+              _hover={{
+                bg: [
+                  "blue.300",
+             
+                  "primary.500",
+                  "primary.600",
+                  "primary.600",
+                ],
+              }}
+            >
+              Create Account
+            </Button>
+          </MenuItems>
+        </Flex>
+      </Box>
+    </Flex>
+  )
+}
+
+export default Header
