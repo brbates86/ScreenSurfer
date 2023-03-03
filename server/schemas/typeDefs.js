@@ -38,8 +38,12 @@ const typeDefs = gql`
     addUser(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     removeUser(UserId: ID!): User
-    addWatchlist(title: String!, description: String!): Movies
-    
+    addWatchlist(movies: [Movies]!): Movies
+    addReviews(
+      movieId: ID!
+      reivewText: String!
+      reviewAuthor: String!
+    ): Movies
     
   }
 `;
