@@ -15,12 +15,8 @@ const SocialButton = ({
   children,
   label,
   href,
-}: 
-{
-  children: ReactNode;
-  label: string;
-  href: string;
-}) => {
+},
+) => {
   return (
     <chakra.button
       bg={useColorModeValue('blackAlpha.100', 'whiteAlpha.100')}
@@ -49,8 +45,9 @@ export default function SmallWithSocial() {
       bg={useColorModeValue('blue.500', 'gray.900')}
       color={useColorModeValue('whiteAlpha.900', 'gray.200')}>
       <Container
+      
         as={Stack}
-        maxW={'6xl'}
+        maxW={'4xl'}
         py={4}
         direction={{ base: 'column', md: 'row' }}
         spacing={5}
