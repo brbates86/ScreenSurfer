@@ -56,7 +56,7 @@ const Header = (props) => {
           <MenuItems to="/">Home</MenuItems>
           <MenuItems to="/search">Search</MenuItems>
           <MenuItems to="/profile">Profile</MenuItems>
-          <MenuItems to="/pricing"></MenuItems>
+          <MenuItems to="/login">Login</MenuItems>
           <MenuItems to="/signup" isLast>
             <Button
               size="sm"
