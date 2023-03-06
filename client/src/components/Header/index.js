@@ -1,16 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-<<<<<<< HEAD
-import { Box, Flex, Text, Button } from "@chakra-ui/react"
-import { Image } from '@chakra-ui/react'
-// import Auth from '../../utils/auth';
-// import Logo from "../../Logo/screensurferlogo.png"
-=======
 
 import { Box, Flex, Text, Button, Image } from "@chakra-ui/react"
 // import Auth from '../../utils/auth';
 
->>>>>>> 21682f544e87e2a61e1b301af036af3ec02870f6
 // import { CloseIcon, MenuIcon } from ".../Icons"
 
 const MenuItems = (props) => {
@@ -45,14 +38,10 @@ const Header = (props) => {
       {...props}
     >
       <Flex align="center">
-<<<<<<< HEAD
-      <Image src="/screensurferlogo.png" w={200} alt="logo-image"/>
-=======
 
       <Image src="/screensurferlogo.png" w={200} alt="logo-image"/>
 
 
->>>>>>> 21682f544e87e2a61e1b301af036af3ec02870f6
       </Flex>
       
       
@@ -77,20 +66,13 @@ const Header = (props) => {
           <MenuItems to="/signup" isLast>
             <Button
               size="sm"
-<<<<<<< HEAD
-=======
-
->>>>>>> 21682f544e87e2a61e1b301af036af3ec02870f6
               rounded="sm"
               color={["red.900", "red.950", "red.400", "whiteAlpha.900"]}
               bg={["whiteAlpha.500", "whiteAlpha.900", "whiteAlpha.900", "green.400"]}
               _hover={{
                 bg: [
                   "blue.300",
-<<<<<<< HEAD
-=======
              
->>>>>>> 21682f544e87e2a61e1b301af036af3ec02870f6
                   "primary.500",
                   "primary.600",
                   "primary.600",
