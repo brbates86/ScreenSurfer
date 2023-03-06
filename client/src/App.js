@@ -66,8 +66,9 @@ function App() {
               />
             </Routes>
           </div>
-          <Footer />
+          
         </div>
+        <div style={{position:'fixed', bottom:'0', width:'100vw'}}><Footer /></div>
       </Router>
     </ApolloProvider>
   );
