@@ -1,5 +1,5 @@
 const {Schema, model} = require('mongoose');
-const bcrypt = require('bycrypt');
+const bcrypt = require('bcrypt');
 
 const movieSchema = new Schema(
     {

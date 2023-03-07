@@ -1,14 +1,14 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-import { Box, Flex, Text, Button } from "@chakra-ui/react"
-import { Image } from '@chakra-ui/react'
-// import Auth from '../../utils/auth';
+import { Box, Flex, Text, Button } from "@chakra-ui/react";
+import { Image } from "@chakra-ui/react";
+import auth from "../../utils/auth";
 // import Logo from "../../Logo/screensurferlogo.png"
 // import { CloseIcon, MenuIcon } from ".../Icons"
 
 const MenuItems = (props) => {
-  const { children, isLast, to = "/", ...rest } = props
+  const { children, isLast, to = "/", ...rest } = props;
   return (
     <Text
       mb={{ base: isLast ? 0 : 8, sm: 0 }}
@@ -18,12 +18,12 @@ const MenuItems = (props) => {
     >
       <Link to={to}>{children}</Link>
     </Text>
-  )
-}
+  );
+};
 
 const Header = (props) => {
-  const [show, setShow] = React.useState(false)
-  const toggleMenu = () => setShow(!show)
+  const [show, setShow] = React.useState(false);
+  const toggleMenu = () => setShow(!show);
 
   return (
     <Flex
@@ -35,19 +35,19 @@ const Header = (props) => {
       mb={8}
       p={8}
       bg={["whiteAlpha.900", "whiteAlpha.900", "whiteAlpha.900", "blue.500"]}
-      color={["whiteAlpha.700", "whiteAlpha.500", "whiteAlpha.500", "whiteAlpha.900"]}
+      color={[
+        "whiteAlpha.700",
+        "whiteAlpha.500",
+        "whiteAlpha.500",
+        "whiteAlpha.900",
+      ]}
       {...props}
     >
       <Flex align="center">
-
-      <Image src="/screensurferlogo.png" w={200} alt="logo-image"/>
-
+        <Image src="/screensurferlogo.png" w={200} alt="logo-image" />
       </Flex>
-      
-      
-      <Box display={{ base: "block", md: "none" }} onClick={toggleMenu}>
-       
-      </Box>
+
+      <Box display={{ base: "block", md: "none" }} onClick={toggleMenu}></Box>
 
       <Box
         display={{ base: show ? "block" : "none", md: "block" }}
@@ -62,29 +62,41 @@ const Header = (props) => {
           <MenuItems to="/">Home</MenuItems>
           <MenuItems to="/search">Search</MenuItems>
           <MenuItems to="/profile">Profile</MenuItems>
-          <MenuItems to="/login">Login</MenuItems>
-          <MenuItems to="/signup" isLast>
-            <Button
-              size="sm"
-              rounded="sm"
-              color={["red.900", "red.950", "red.400", "whiteAlpha.900"]}
-              bg={["whiteAlpha.500", "whiteAlpha.900", "whiteAlpha.900", "green.400"]}
-              _hover={{
-                bg: [
-                  "blue.300",
-                  "primary.500",
-                  "primary.600",
-                  "primary.600",
-                ],
-              }}
-            >
-              Create Account
-            </Button>
-          </MenuItems>
+          {!auth.loggedIn() ? (
+            <>
+              <MenuItems to="/login">Login</MenuItems>
+              <MenuItems to="/signup" isLast>
+                <Button
+                  size="sm"
+                  rounded="sm"
+                  color={["red.900", "red.950", "red.400", "whiteAlpha.900"]}
+                  bg={[
+                    "whiteAlpha.500",
+                    "whiteAlpha.900",
+                    "whiteAlpha.900",
+                    "green.400",
+                  ]}
+                  _hover={{
+                    bg: [
+                      "blue.300",
+
+                      "primary.500",
+                      "primary.600",
+                      "primary.600",
+                    ],
+                  }}
+                >
+                  Create Account
+                </Button>
+              </MenuItems>
+            </>
+          ) : (
+            <button onClick={auth.logout}>Logout</button>
+          )}
         </Flex>
       </Box>
     </Flex>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
