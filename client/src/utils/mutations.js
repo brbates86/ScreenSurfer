@@ -26,4 +26,9 @@ export const LOGIN_USER = gql`
   }
 `;
 
+export const EDIT_LIST = gql`
+mutation editList() {
+  
+}`
+
 

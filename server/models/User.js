@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 
 
 const userSchema = new Schema({
-    username: {
+    name: {
         type: String,
         required:true,
         unique: true, 
@@ -19,13 +19,12 @@ const userSchema = new Schema({
     password: {
         type: String,
         required: true,
-        match:[A-Za-z],
-        minlength: 5,
     },
-    watchists:{
+    watchlists:[{
         type: Schema.Types.ObjectId,
-        ref: 'Watchlist'
-    }
+        ref: 'Watchlist',
+        allow: null
+    }]
 })
 
 userSchema.pre('save', async function (next) {
@@ -36,7 +35,7 @@ userSchema.pre('save', async function (next) {
     next();
 });
 
-userSchema.methods.isCorrectPassword = async function (passowrd) {
+userSchema.methods.isCorrectPassword = async function (password) {
     return bcrypt.compare(password, this.password);
 };
 
