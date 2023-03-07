@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 import { Box, Flex, Text, Button } from "@chakra-ui/react"
 import { Image } from '@chakra-ui/react'
 // import Auth from '../../utils/auth';
@@ -38,7 +39,9 @@ const Header = (props) => {
       {...props}
     >
       <Flex align="center">
+
       <Image src="/screensurferlogo.png" w={200} alt="logo-image"/>
+
       </Flex>
       
       
@@ -59,16 +62,18 @@ const Header = (props) => {
           <MenuItems to="/">Home</MenuItems>
           <MenuItems to="/search">Search</MenuItems>
           <MenuItems to="/profile">Profile</MenuItems>
-          <MenuItems to="/pricing"></MenuItems>
+          <MenuItems to="/login">Login</MenuItems>
           <MenuItems to="/signup" isLast>
             <Button
               size="sm"
+
               rounded="sm"
               color={["red.900", "red.950", "red.400", "whiteAlpha.900"]}
               bg={["whiteAlpha.500", "whiteAlpha.900", "whiteAlpha.900", "green.400"]}
               _hover={{
                 bg: [
                   "blue.300",
+
                   "primary.500",
                   "primary.600",
                   "primary.600",
