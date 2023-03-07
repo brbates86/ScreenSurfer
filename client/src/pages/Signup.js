@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import {Flex, Box, FormControl, FormLabel, Input, Stack, Button, Heading, Text, Image, useColorModeValue} from '@chakra-ui/react';
 //  import { useMutation } from '@apollo/client';
 // import { ADD_PROFILE } from '../utils/mutations';
-
 // import Auth from '../utils/auth';
 
 const Signup = () => {
