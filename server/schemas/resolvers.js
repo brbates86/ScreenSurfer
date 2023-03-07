@@ -7,7 +7,7 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    Users: async () => {
+    users: async () => {
       return User.find();
     },
 
@@ -55,8 +55,8 @@ const resolvers = {
       throw new AuthenticationError('You need to be logged in!');
     },
     // Make it so a logged in user can only remove a skill from their own profile
-    addWatchlist: async (parent, args, {movies, userWatchlist} ,context) => {
-      const watchlists = await Watchlist.create({movies, userWatchlist})
+    addWatchlist: async (parent, {movies} ,context) => {
+      const watchlists = await Watchlist.create({movies})
       if (context.user) {
         return User.findOneAndUpdate(
           {username: userWatchlist},
