@@ -1,49 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import {Flex, Box, FormControl, FormLabel, Input, Stack, Button, Heading, Text, useColorModeValue} from '@chakra-ui/react';
-import { useMutation } from '@apollo/client';
-import { ADD_PROFILE } from '../utils/mutations';
-
-import Auth from '../utils/auth';
-
-const Signup = () => {
-  const [formState, setFormState] = useState({
-    name: '',
-    email: '',
-    password: '',
-  });
-  const [addProfile, { error, data }] = useMutation(ADD_PROFILE);
-
-  // update state based on form input changes
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-
-    setFormState({
-      ...formState,
-      [name]: value,
-    });
-  };
-
-  // submit form
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-    console.log(formState);
-
-    try {
-      const { data } = await addProfile({
-        variables: { ...formState },
-      });
-
-      Auth.login(data.addProfile.token);
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
-// import { useMutation } from '@apollo/client';
+import {Flex, Box, FormControl, FormLabel, Input, Stack, Button, Heading, Text, Image, useColorModeValue} from '@chakra-ui/react';
+//  import { useMutation } from '@apollo/client';
 // import { ADD_PROFILE } from '../utils/mutations';
 
+// import Auth from '../utils/auth';
+
+const Signup = () => {
+
     return (
+      
       <Flex
         minH={'100vh'}
         align={'center'}
@@ -58,9 +24,10 @@ const Signup = () => {
           </Stack>
           <Box
             rounded={'sm'}
-            bg={useColorModeValue('whiteAlpha.500', 'blue.400')}
+            bg={useColorModeValue('blue.400', 'blue.400')}
             boxShadow={'lg'}
             p={8}>
+              <Image src='/screensurferlogo.png' w={60} alt="logo-image"/>
             <Stack spacing={4}>
             <FormControl id="name">
                 <FormLabel>First Name</FormLabel>
@@ -99,6 +66,6 @@ const Signup = () => {
         </Stack>
       </Flex>
     );
-  }
+ }
 
 export default Signup;
