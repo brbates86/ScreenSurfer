@@ -16,6 +16,7 @@ import Login from './pages/Login';
 import Header from './components/Header';
 import Footer from './components/Footer';
 //import ProfileTest from './pages/ProfileTest'
+import SearchMovies from './pages/searchedMovies';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
