@@ -1,12 +1,47 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {Flex, Box, FormControl, FormLabel, Input, Checkbox, Stack, Button, Heading, Text, useColorModeValue} from '@chakra-ui/react';
+import {Flex, Box, FormControl, FormLabel, Input, Stack, Button, Heading, Text, useColorModeValue} from '@chakra-ui/react';
+import { useMutation } from '@apollo/client';
+import { ADD_PROFILE } from '../utils/mutations';
+
+
+const Signup = () => {
+  const [formState, setFormState] = useState({
+    name: '',
+    email: '',
+    password: '',
+  });
+  const [addProfile, { error, data }] = useMutation(ADD_PROFILE);
+
+  // update state based on form input changes
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+  };
+
+  // submit form
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    console.log(formState);
+
+    try {
+      const { data } = await addProfile({
+        variables: { ...formState },
+      });
+
+      Auth.login(data.addProfile.token);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
 // import { useMutation } from '@apollo/client';
 // import { ADD_PROFILE } from '../utils/mutations';
 
-
-
-  const Signup = () => {
     return (
       <Flex
         minH={'100vh'}
@@ -47,8 +82,7 @@ import {Flex, Box, FormControl, FormLabel, Input, Checkbox, Stack, Button, Headi
                   direction={{ base: 'column', sm: 'row' }}
                   align={'start'}
                   justify={'space-between'}>
-                  <Checkbox>Remember me</Checkbox>
-                  <Link color={'blue.400'}>Forgot password?</Link>
+                  
                 </Stack>
                 <Button
                   bg={'green.400'}
