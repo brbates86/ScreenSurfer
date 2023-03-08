@@ -1,4 +1,4 @@
-const { Schema, model } = require("mongoose");
+const { Schema } = require("mongoose");
 const bcrypt = require("bcrypt");
 
 const movieSchema = new Schema({
@@ -17,10 +17,10 @@ const movieSchema = new Schema({
     type: String,
     required: true,
   },
-  reviews: {
-    type: Schema.Types.ObjectId,
-    ref: "Review",
-  },
+  // reviews: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: "Review",
+  // },
 });
 
 module.exports = movieSchema;
