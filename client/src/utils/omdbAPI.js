@@ -51,5 +51,5 @@ export const deleteMovie = (movieId, token) => {
   };
 
 export const searchOmdbMovies = (query) => {
-    return fetch (`${omdbUrl}t=${query}&${apiKey}`)
+    return fetch (`${omdbUrl}s=${query}&${apiKey}`)
 };
