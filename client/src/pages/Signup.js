@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import {Flex, Box, FormControl, FormLabel, Input, Stack, Button, Heading, Text, useColorModeValue} from '@chakra-ui/react';
+// import {Flex, Box, FormControl, FormLabel, Input, Stack, Button, Heading, Text, useColorModeValue} from '@chakra-ui/react';
 import { useMutation } from '@apollo/client';
 import { ADD_PROFILE } from '../utils/mutations';
-
+import Auth from '../utils/auth';
 
 const Signup = () => {
   const [formState, setFormState] = useState({
@@ -39,65 +39,64 @@ const Signup = () => {
     }
   };
 
-// import { useMutation } from '@apollo/client';
-// import { ADD_PROFILE } from '../utils/mutations';
+  return (
+    <main className="flex-row justify-center mb-4">
+      <div className="col-12 col-lg-10">
+        <div className="card">
+          <h4 className="card-header bg-dark text-light p-2">Sign Up</h4>
+          <div className="card-body">
+            {data ? (
+              <p>
+                Success! You may now head{' '}
+                <Link to="/">back to the homepage.</Link>
+              </p>
+            ) : (
+              <form onSubmit={handleFormSubmit}>
+                <input
+                  className="form-input"
+                  placeholder="Your username"
+                  name="name"
+                  type="text"
+                  value={formState.name}
+                  onChange={handleChange}
+                />
+                <input
+                  className="form-input"
+                  placeholder="Your email"
+                  name="email"
+                  type="email"
+                  value={formState.email}
+                  onChange={handleChange}
+                />
+                <input
+                  className="form-input"
+                  placeholder="******"
+                  name="password"
+                  type="password"
+                  value={formState.password}
+                  onChange={handleChange}
+                />
+                <button
+                  className="btn btn-block btn-info"
+                  style={{ cursor: 'pointer' }}
+                  type="submit"
+                >
+                  Submit
+                </button>
+              </form>
+            )}
 
-    return (
-      <Flex
-        minH={'100vh'}
-        align={'center'}
-        justify={'center'}
-        bg={useColorModeValue('white', 'blue.500')}>
-        <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
-          <Stack align={'center'}>
-            <Heading fontSize={'4xl'}>Signup</Heading>
-            <Text fontSize={'lg'} color={'gray.600'}>
-              to enjoy all of our cool <Link color={'blue.400'}>features</Link> 
-            </Text>
-          </Stack>
-          <Box
-            rounded={'sm'}
-            bg={useColorModeValue('whiteAlpha.500', 'blue.400')}
-            boxShadow={'lg'}
-            p={8}>
-            <Stack spacing={4}>
-            <FormControl id="name">
-                <FormLabel>First Name</FormLabel>
-                <Input type="email" />
-              </FormControl>
-              <FormControl id="email">
-                <FormLabel>Last Name</FormLabel>
-                <Input type="email" />
-              </FormControl>
-              <FormControl id="email">
-                <FormLabel>Email address</FormLabel>
-                <Input type="email" />
-              </FormControl>
-              <FormControl id="password">
-                <FormLabel>Password</FormLabel>
-                <Input type="password" />
-              </FormControl>
-              <Stack spacing={10}>
-                <Stack
-                  direction={{ base: 'column', sm: 'row' }}
-                  align={'start'}
-                  justify={'space-between'}>
-                  
-                </Stack>
-                <Button
-                  bg={'green.400'}
-                  color={'white'}
-                  _hover={{
-                    bg: 'blue.300',
-                  }}>
-                  Sign Up
-                </Button>
-              </Stack>
-            </Stack>
-          </Box>
-        </Stack>
-      </Flex>
-    );
-  }
+            {error && (
+              <div className="my-3 p-3 bg-danger text-white">
+                {error.message}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </main>
+  );
+};
 
 export default Signup;
+
