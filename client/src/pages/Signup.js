@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import {Flex, Box, FormControl, FormLabel, Input, Stack, Button, Heading, Text, useColorModeValue} from '@chakra-ui/react';
 import { useMutation } from '@apollo/client';
 import { ADD_PROFILE } from '../utils/mutations';
-
+import Auth from '../utils/auth';
 
 const Signup = () => {
   const [formState, setFormState] = useState({
@@ -37,10 +37,12 @@ const Signup = () => {
     } catch (e) {
       console.error(e);
     }
+    setFormState({
+      email: '',
+      password: '',
+    });
   };
 
-// import { useMutation } from '@apollo/client';
-// import { ADD_PROFILE } from '../utils/mutations';
 
     return (
       <Flex
@@ -55,28 +57,61 @@ const Signup = () => {
               to enjoy all of our cool <Link color={'blue.400'}>features</Link> 
             </Text>
           </Stack>
-          <Box
-            rounded={'sm'}
-            bg={useColorModeValue('whiteAlpha.500', 'blue.400')}
-            boxShadow={'lg'}
-            p={8}>
-            <Stack spacing={4}>
-            <FormControl id="name">
-                <FormLabel>First Name</FormLabel>
-                <Input type="email" />
-              </FormControl>
-              <FormControl id="email">
-                <FormLabel>Last Name</FormLabel>
-                <Input type="email" />
-              </FormControl>
-              <FormControl id="email">
-                <FormLabel>Email address</FormLabel>
-                <Input type="email" />
-              </FormControl>
-              <FormControl id="password">
-                <FormLabel>Password</FormLabel>
-                <Input type="password" />
-              </FormControl>
+          <div>
+          {data ? (
+              <p>
+                Success! You may now head{' '}
+                <Link to="/">back to the homepage.</Link>
+              </p>
+            ) : (
+          <Box 
+          rounded={'sm'}
+          boxShadow={'lg'}
+          p={8}>
+             <Stack spacing={4}>
+          <FormControl id="name" onSubmit={handleFormSubmit}>
+            <FormLabel>First Name</FormLabel>
+                <Input
+                  placeholder="******"
+                  name="First Name"
+                  type="first name"
+                  value={formState.firstName}
+                  onChange={handleChange}
+                />
+          </FormControl>
+          <FormControl id="name" onSubmit={handleFormSubmit}>
+             <FormLabel>Last Name</FormLabel>
+                   <Input
+                  className="form-input"
+                  placeholder="******"
+                  name="Last Name"
+                  type="last name"
+                  value={formState.lastName}
+                  onChange={handleChange}
+                />
+          </FormControl>
+          <FormControl id="email" onSubmit={handleFormSubmit}>
+            <FormLabel>Email</FormLabel>
+                 <Input
+                  className="form-input"
+                  placeholder="Your email"
+                  name="email"
+                  type="email"
+                  value={formState.email}
+                  onChange={handleChange}
+                />
+          </FormControl>
+          <FormControl id="password" onSubmit={handleFormSubmit}>
+            <FormLabel>Password</FormLabel>
+                  <Input
+                  className="form-input"
+                  placeholder="******"
+                  name="password"
+                  type="password"
+                  value={formState.password}
+                  onChange={handleChange}
+                /> 
+          </FormControl>
               <Stack spacing={10}>
                 <Stack
                   direction={{ base: 'column', sm: 'row' }}
@@ -85,6 +120,7 @@ const Signup = () => {
                   
                 </Stack>
                 <Button
+                  type='submit'
                   bg={'green.400'}
                   color={'white'}
                   _hover={{
@@ -92,12 +128,25 @@ const Signup = () => {
                   }}>
                   Sign Up
                 </Button>
+                
+                {error && (
+              <div>
+                {error.message}
+              </div>
+            )}
               </Stack>
             </Stack>
           </Box>
+           )}
+          </div>
+          
         </Stack>
+        
       </Flex>
+      
     );
   }
 
 export default Signup;
+
+ 
