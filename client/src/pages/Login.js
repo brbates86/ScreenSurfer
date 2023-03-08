@@ -44,7 +44,7 @@ const Login = (props) => {
   return (
     <Card bg={"whiteAlpha.900"}>
       <CardHeader>
-        <Heading size='lg' textAlign={'center'}>Signup</Heading>
+        <Heading size='lg' textAlign={'center'}>Login</Heading>
       <Flex spacing='4'>
       <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap' justify={'center'}>
         <Box 
@@ -64,7 +64,7 @@ const Login = (props) => {
     
         <main className="flex-row justify-center mb-4">
       <Stack spacing={10} pt={2}>
-        <div className="col-12 col-lg-10">
+        <div className="col-15 col-lg-15">
           <div className="card">
             <div className="card-body">
             {data ? (
@@ -75,17 +75,6 @@ const Login = (props) => {
             ) : (
               
               <form onSubmit={handleFormSubmit}>
-                
-                <Input
-                  rounded={'sm'}
-                  className="form-input"
-                  placeholder="Username"
-                  name="name"
-                  type="text"
-                  value={formState.name}
-                  onChange={handleChange}
-                />
-                
                 <Input
                   rounded={'sm'}
                   className="form-input"
@@ -118,7 +107,7 @@ const Login = (props) => {
                   className="btn btn-block btn-info"
                   style={{ cursor: "pointer" }}
                   type="submit">
-                  Signup
+                  Login
                 </Button>
                 </Stack>
               </form>
