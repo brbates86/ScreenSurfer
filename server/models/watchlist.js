@@ -1,15 +1,8 @@
-const {Schema, model} = require('mongoose')
+const { Schema, model } = require("mongoose");
+const movieSchema = require("./movies");
 
 const watchlistSchema = new Schema({
-    movies: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: 'Movies'
-            
-        }
-    ],   
-})
+  movies: [movieSchema],
+});
 
-const Watchlist = model('Watchlist', watchlistSchema);
-
-module.exports = Watchlist;
+module.exports = watchlistSchema;
