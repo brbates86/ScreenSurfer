@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import Auth from '../utils/auth';
-import { extendBaseTheme, SimpleGrid } from '@chakra-ui/react'
+import { SimpleGrid } from '@chakra-ui/react'
 import chakraTheme from '@chakra-ui/theme'
 import { saveMovie, searchOmdbMovies } from '../utils/omdbAPI';
-import { saveMovieTitles, getSavedMovieTitles } from '../utils/localStorage';
+import { saveMovieIds, getSavedMovieIds } from '../utils/localStorage';
 
 const { 
+  Box,
   Button, 
-  Form, 
-  FormControl, 
-  Container, 
   Card, 
   CardBody, 
-  Box,
-  Image,
+  Container, 
+  Form, 
+  FormControl, 
   Heading,
+  Image,
   Text,
 } = chakraTheme.components
 
@@ -22,10 +22,10 @@ const {
 const SearchMovies = () => {
     const [searchedMovies, setSearchedMovies] = useState([]);
     const [searchInput, setSearchInput] = useState('');
-    const [savedtitles, setSavedtitles] = useState(getSavedMovieTitles());
+    const [savedMovieIds, setSavedMovieIds] = useState(getSavedMovieIds());
 
     useEffect(() => {
-        return () => saveMovieTitles(savedtitles);
+        return () => saveMovieIds(savedMovieIds);
       });
     
     const handleFormSubmit = async (event) => {
@@ -47,7 +47,9 @@ const SearchMovies = () => {
                 released: movie.Released,
                 director: movie.Director,
                 genre: movie.Genre,
-                rating: movie.Metascore
+                rating: movie.Metascore,
+                plot: movie.Plot,
+                movieId: movie.imdbID,
           }));
 
             setSearchedMovies(movieData);
@@ -57,8 +59,8 @@ const SearchMovies = () => {
         }
     };
 
-    const handleSaveMovie = async (title) => {
-        const movieToSave = searchedMovies.find((movie) => movie.title === title);
+    const handleSaveMovie = async (movieId) => {
+        const movieToSave = searchedMovies.find((movie) => movie.movieId === movieId);
         const token = Auth.loggedIn() ? Auth.getToken() : null;
 
         if (!token) {
@@ -69,7 +71,7 @@ const SearchMovies = () => {
           if (!response.ok) {
             throw new Error('something went wrong!');
           }
-          setSavedtitles([...savedtitles, movieToSave.title]);
+          setSavedMovieIds([...savedMovieIds, movieToSave.movieId]);
         } catch (err) {
           console.error(err);
         }
@@ -113,20 +115,20 @@ const SearchMovies = () => {
           {searchedMovies.map((movie) => {
             return (
               <Box md="4">
-                <Card key={movie.title} border='dark'>
+                <Card key={movie.movieId} border='dark'>
                   {movie.poster ? (
                     <Image src={movie.poster} alt={`The cover for ${movie.title}`} variant='top' />
                   ) : null}
                   <CardBody>
                     <Heading>{movie.title}</Heading>
                     <p className='small'>Directors: {movie.director}</p>
-                    <Text>{movie.description}</Text>
+                    <Text>{movie.plot}</Text>
                     {Auth.loggedIn() && (
                       <Button
-                        disabled={savedtitles?.some((savedtitle) => savedtitle === movie.title)}
+                        disabled={savedMovieIds?.some((savedMovieId) => savedMovieId === movie.movieId)}
                         className='btn-block btn-info'
                         onClick={() => handleSaveMovie(movie.title)}>
-                        {savedtitles?.some((savedtitle) => savedtitle === movie.title)
+                        {savedMovieIds?.some((savedMovieId) => savedMovieId === movie.movieId)
                           ? 'This movie has already been saved!'
                           : 'Save this movie!'}
                       </Button>
