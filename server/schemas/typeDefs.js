@@ -1,11 +1,11 @@
-const { gql } = require('apollo-server-express');
+const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
   type User {
     _id: ID
     name: String
     email: String
-    watchlist: [Watchlist]
+    watchlists: [Watchlist]
   }
 
   type Movie {
@@ -13,7 +13,6 @@ const typeDefs = gql`
     release: String
     description: String
     screenTime: String
-    
   }
 
   input MovieInput {
@@ -21,7 +20,6 @@ const typeDefs = gql`
     release: String!
     description: String!
     screenTime: String!
-    
   }
 
   type Watchlist {
@@ -43,13 +41,8 @@ const typeDefs = gql`
     addUser(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     removeUser(UserId: ID!): User
-    addWatchlist(movies: [MovieInput]!): [Movie]
-    addReview(
-      movieId: ID!
-      reivewText: String!
-      reviewAuthor: String!
-    ): Movie
-    
+    addWatchlist(movies: [MovieInput]!): User
+    addReview(movieId: ID!, reivewText: String!, reviewAuthor: String!): Movie
   }
 `;
 
