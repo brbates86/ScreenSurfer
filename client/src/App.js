@@ -59,6 +59,10 @@ function App() {
                 path="/signup" 
                 element={<Signup />}
               />
+              <Route 
+                path="/search" 
+                element={<SearchMovies />}
+              />
                {/* <Route 
                 path="/test" 
                 element={<ProfileTest />}
