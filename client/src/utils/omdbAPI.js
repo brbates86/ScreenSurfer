@@ -1,4 +1,4 @@
-const omdbUrl = "http://www.omdbapi.com/?";
+const omdbUrl = "https://www.omdbapi.com/?";
 const apiKey = "apikey=e9c91b8b";
 
 export const getMe = (token) => {
