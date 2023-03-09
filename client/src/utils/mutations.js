@@ -24,13 +24,46 @@ export const LOGIN_USER = gql`
   }
 `;
 
-export const ADD_WATCHLIST = gql`
-  mutation addWatchlist($movies: [MovieInput]!) {
-    addWatchlist(movies: $movies) {
-      title
-      release
-      description
-      screenTime
+export const SAVE_MOVIE = gql`
+  mutation saveMovie($input: MovieInput) {
+    saveMovie(input: $input) {
+      _id
+      username
+      movieCount
+      savedMovies {
+        movieId
+        title
+        release
+        description
+        screenTime
+      }
     }
   }
 `;
+
+export const REMOVE_MOVIE = gql`
+  mutation removeMovie($movieId: String!) {
+    removeMovie(movieId: $movieId) {
+      _id
+      username
+      movieCount
+      savedMovies {
+        movieId
+        title
+        release
+        description
+        screenTime
+      }
+    }
+  }
+`;
+
+// export const ADD_WATCHLIST = gql`
+//   mutation addWatchlist($movies: [MovieInput]!) {
+//     addWatchlist(movies: $movies) {
+//       title
+//       release
+//       description
+//       screenTime
+//     }
+//   }

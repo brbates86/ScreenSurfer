@@ -5,10 +5,12 @@ const typeDefs = gql`
     _id: ID
     name: String
     email: String
-    watchlists: [Watchlist]
+    movieCount: Int
+    savedMovies: [Movie]
   }
 
   type Movie {
+    movieId: String
     title: String
     release: String
     description: String
@@ -16,14 +18,11 @@ const typeDefs = gql`
   }
 
   input MovieInput {
-    title: String!
-    release: String!
-    description: String!
-    screenTime: String!
-  }
-
-  type Watchlist {
-    movies: [Movie]
+    movieId: String
+    title: String
+    release: String
+    description: String
+    screenTime: String
   }
 
   type Auth {
@@ -41,9 +40,16 @@ const typeDefs = gql`
     addProfile(name: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
     removeUser(UserId: ID!): User
-    addWatchlist(movies: [MovieInput]!): User
-    addReview(movieId: ID!, reivewText: String!, reviewAuthor: String!): Movie
+    saveMovie(input: MovieInput): User
+    removeMovie(movieId: String): User
   }
 `;
 
 module.exports = typeDefs;
+
+// type Watchlist {
+//   movies: [Movie]
+// }
+
+// addWatchlist(movies: [MovieInput]!): User
+// addReview(movieId: ID!, reivewText: String!, reviewAuthor: String!): Movie

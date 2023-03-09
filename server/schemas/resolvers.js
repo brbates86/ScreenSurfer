@@ -1,6 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User, Movies, Review, Watchlist } = require("../models");
-
+const { User } = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -52,30 +51,54 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-    // Make it so a logged in user can only remove a skill from their own profile
-    addWatchlist: async (parent, { movies }, context) => {
+    saveMovie: async (parent, { input }, context) => {
       if (context.user) {
-        const updatedUser = await User.findOne({ name: context.user.name });
-        const newWatchlist = [{ movies: [...movies] }];
-        updatedUser.watchlists = newWatchlist;
-        await updatedUser.save();
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { savedMovies: input } },
+          { new: true, runValidators: true }
+        );
         return updatedUser;
       }
+      throw new AuthenticationError("You need to be logged in!");
     },
-
-    addReview: async (parent, args, { moviesId, reviewText, ReviewAuthor }) => {
-      return Movies.findOneAndUpdate(
-        { _id: moviesId },
-        {
-          $addToSet: { reviews: { reviewText, ReviewAuthor } },
-        },
-        {
-          new: true,
-          runValidators: true,
-        }
-      );
+    removeMovie: async (parent, { movieId }, context) => {
+      if (context.user) {
+        const updatedUser = await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { savedMovies: { movieId: movieId } } },
+          { new: true }
+        );
+        return updatedUser;
+      }
+      throw new AuthenticationError("You need to be logged in!");
     },
   },
 };
 
 module.exports = resolvers;
+
+//const { User, Movies, Review, Watchlist } = require("../models");
+
+// addWatchlist: async (parent, { movies }, context) => {
+//   if (context.user) {
+//     const updatedUser = await User.findOne({ name: context.user.name });
+//     const newWatchlist = [{ movies: [...movies] }];
+//     updatedUser.watchlists = newWatchlist;
+//     await updatedUser.save();
+//     return updatedUser;
+//   }
+// },
+
+// addReview: async (parent, args, { moviesId, reviewText, ReviewAuthor }) => {
+//   return Movies.findOneAndUpdate(
+//     { _id: moviesId },
+//     {
+//       $addToSet: { reviews: { reviewText, ReviewAuthor } },
+//     },
+//     {
+//       new: true,
+//       runValidators: true,
+//     }
+//   );
+// },

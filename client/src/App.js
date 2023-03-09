@@ -1,35 +1,36 @@
-import React from 'react';
-import './App.css'
+import React from "react";
+import "./App.css";
 import {
   ApolloClient,
   InMemoryCache,
   ApolloProvider,
   createHttpLink,
-} from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+} from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Home from './pages/Home';
+//import Home from "./pages/Home";
 //import Profile from './pages/Profile';
-import Signup from './pages/Signup';
-import Login from './pages/Login';
-import Header from './components/Header';
-import Footer from './components/Footer';
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 //import ProfileTest from './pages/ProfileTest'
-import SearchMovies from './pages/searchedMovies';
+import SearchMovies from "./pages/searchedMovies";
+import SavedMovies from "./pages/savedMovies";
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: "/graphql",
 });
 
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
-  const token = localStorage.getItem('id_token');
+  const token = localStorage.getItem("id_token");
   // return the headers to the context so httpLink can read them
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : '',
+      authorization: token ? `Bearer ${token}` : "",
     },
   };
 });
@@ -47,23 +48,11 @@ function App() {
           <Header />
           <div>
             <Routes>
-              <Route 
-                path="/" 
-                element={<Home />}
-              />
-              <Route 
-                path="/login" 
-                element={<Login />}
-              />
-              <Route 
-                path="/signup" 
-                element={<Signup />}
-              />
-              <Route 
-                path="/search" 
-                element={<SearchMovies />}
-              />
-               {/* <Route 
+              <Route path="/" element={<SearchMovies />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/watchlist" element={<SavedMovies />} />
+              {/* <Route 
                 path="/test" 
                 element={<ProfileTest />}
               /> */}
@@ -77,9 +66,10 @@ function App() {
               /> */}
             </Routes>
           </div>
-          
         </div>
-        <div style={{position:'fixed', bottom:'0', width:'100vw'}}><Footer /></div>
+        <div style={{ position: "fixed", bottom: "0", width: "100vw" }}>
+          <Footer />
+        </div>
       </Router>
     </ApolloProvider>
   );
