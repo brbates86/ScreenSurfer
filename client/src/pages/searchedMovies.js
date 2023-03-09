@@ -45,7 +45,7 @@ const SearchMovies = () => {
         movieId: movie.imdbID,
         title: movie.Title,
         poster: movie.Poster,
-        release: movie.Released,
+        release: movie.Year,
         description: movie.Plot,
         screenTime: movie.Runtime,
       }));
@@ -67,8 +67,12 @@ const SearchMovies = () => {
       return false;
     }
     try {
-      const response = await saveMovie(movieToSave, token);
-      if (!response.ok) {
+      const response = await saveMovie({
+        variables: {
+          input: movieToSave,
+        },
+      });
+      if (!response) {
         throw new Error("something went wrong!");
       }
       setSavedMovieIds([...savedMovieIds, movieToSave.movieId]);
@@ -78,7 +82,7 @@ const SearchMovies = () => {
   };
 
   return (
-    <>
+    <div>
       <Jumbotron fluid className="text-light bg-dark">
         <Container>
           <h1>Search for Movies!</h1>
@@ -96,7 +100,7 @@ const SearchMovies = () => {
               </Col>
               <Col xs={12} md={4}>
                 <Button type="submit" variant="success" size="lg">
-                  Submit Search
+                  ACTION!
                 </Button>
               </Col>
             </Form.Row>
@@ -110,13 +114,18 @@ const SearchMovies = () => {
             ? `Viewing ${searchedMovies.length} results:`
             : "Search for a movie to begin"}
         </h2>
+
         <CardColumns>
           {searchedMovies.map((movie) => {
             return (
-              <Card key={movie.movieId} border="dark">
-                {movie.image ? (
+              <Card
+                key={movie.movieId}
+                style={{ width: "40rem" }}
+                border="dark"
+              >
+                {movie.poster ? (
                   <Card.Img
-                    src={movie.image}
+                    src={movie.poster}
                     alt={`The cover for ${movie.title}`}
                     variant="top"
                   />
@@ -146,7 +155,7 @@ const SearchMovies = () => {
           })}
         </CardColumns>
       </Container>
-    </>
+    </div>
   );
 };
 

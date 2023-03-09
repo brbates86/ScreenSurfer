@@ -7,7 +7,13 @@ const movieSchema = new Schema({
     required: true,
   },
   release: {
-    type: Date,
+    type: String,
+  },
+  poster: {
+    type: String,
+  },
+  movieId: {
+    type: String,
   },
   description: {
     type: String,
