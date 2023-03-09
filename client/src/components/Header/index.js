@@ -60,7 +60,7 @@ const Header = (props) => {
           pt={[4, 4, 0, 0]}
         >
           <MenuItems to="/">Home</MenuItems>
-          <MenuItems to="/search">Search</MenuItems>
+          <MenuItems to="/watchlist">Watchlist</MenuItems>
           <MenuItems to="/profile">Profile</MenuItems>
           {!auth.loggedIn() ? (
             <>
