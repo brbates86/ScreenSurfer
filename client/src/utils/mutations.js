@@ -44,24 +44,12 @@ export const REMOVE_MOVIE = gql`
   mutation removeMovie($movieId: String!) {
     removeMovie(movieId: $movieId) {
       _id
-      username
+      name
       movieCount
       savedMovies {
         movieId
-        title
-        release
-        poster
+        
       }
     }
   }
 `;
-
-// export const ADD_WATCHLIST = gql`
-//   mutation addWatchlist($movies: [MovieInput]!) {
-//     addWatchlist(movies: $movies) {
-//       title
-//       release
-//       description
-//       screenTime
-//     }
-//   }
