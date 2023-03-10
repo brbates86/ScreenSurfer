@@ -39,7 +39,7 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     removeUser(UserId: ID!): User
     saveMovie(input: MovieInput): User
-    removeMovie(movieId: String): User
+    removeMovie(movieId: String!): User
   }
 `;
 

@@ -44,13 +44,11 @@ export const REMOVE_MOVIE = gql`
   mutation removeMovie($movieId: String!) {
     removeMovie(movieId: $movieId) {
       _id
-      username
+      name
       movieCount
       savedMovies {
         movieId
-        title
-        release
-        poster
+        
       }
     }
   }
