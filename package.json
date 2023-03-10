@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": ">=16 <17"
+  },
   "scripts": {
     "start": "node server --ignore client",
     "develop": "concurrently \"cd server && npm run start\" \"cd client && npm start\"",
@@ -22,6 +25,7 @@
   },
   "homepage": "https://github.com/brbates86/MyMovieTracker#readme",
   "dependencies": {
+    "bootstrap": "^5.2.3",
     "concurrently": "^7.6.0"
   }
 }
