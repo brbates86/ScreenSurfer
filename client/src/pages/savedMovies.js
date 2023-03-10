@@ -58,7 +58,7 @@ const SavedMovies = () => {
               }:`
             : "You have no saved movies!"}
         </h2>
-        <CardColumns>
+        <CardColumns className="searchedMovies">
           {userData.savedMovies?.map((movie) => {
             return (
               <Card className="cCard" key={movie.movieId} border="dark">
