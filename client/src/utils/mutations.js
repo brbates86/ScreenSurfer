@@ -53,13 +53,3 @@ export const REMOVE_MOVIE = gql`
     }
   }
 `;
-
-// export const ADD_WATCHLIST = gql`
-//   mutation addWatchlist($movies: [MovieInput]!) {
-//     addWatchlist(movies: $movies) {
-//       title
-//       release
-//       description
-//       screenTime
-//     }
-//   }
