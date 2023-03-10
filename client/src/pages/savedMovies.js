@@ -64,9 +64,9 @@ const SavedMovies = () => {
           {userData.savedMovies?.map((movie) => {
             return (
               <Card key={movie.movieId} border="dark">
-                {movie.image ? (
+                {movie.poster ? (
                   <Card.Img
-                    src={movie.image}
+                    src={movie.poster}
                     alt={`The cover for ${movie.title}`}
                     variant="top"
                   />
@@ -74,7 +74,7 @@ const SavedMovies = () => {
                 <Card.Body>
                   <Card.Title>{movie.title}</Card.Title>
                   <p className="small">Released: {movie.released}</p>
-                  <Card.Text>{movie.description}</Card.Text>
+                  <Card.Text></Card.Text>
                   <Button
                     className="btn-block btn-danger"
                     onClick={() => handleDeleteMovie(movie.movieId)}

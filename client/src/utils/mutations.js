@@ -28,14 +28,13 @@ export const SAVE_MOVIE = gql`
   mutation saveMovie($input: MovieInput) {
     saveMovie(input: $input) {
       _id
-      username
+      name
       movieCount
       savedMovies {
         movieId
         title
         release
-        description
-        screenTime
+        poster
       }
     }
   }
@@ -51,8 +50,7 @@ export const REMOVE_MOVIE = gql`
         movieId
         title
         release
-        description
-        screenTime
+        poster
       }
     }
   }

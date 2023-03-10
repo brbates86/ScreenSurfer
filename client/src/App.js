@@ -8,14 +8,11 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-//import Home from "./pages/Home";
-//import Profile from './pages/Profile';
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-//import ProfileTest from './pages/ProfileTest'
+import ProfileTest from "./pages/ProfileTest";
 import SearchMovies from "./pages/searchedMovies";
 import SavedMovies from "./pages/savedMovies";
 
@@ -52,10 +49,7 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/watchlist" element={<SavedMovies />} />
-              {/* <Route 
-                path="/test" 
-                element={<ProfileTest />}
-              /> */}
+              <Route path="/profile" element={<ProfileTest />} />
               {/* <Route 
                 path="/me" 
                 element={<Profile />}

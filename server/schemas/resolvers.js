@@ -58,6 +58,7 @@ const resolvers = {
           { $addToSet: { savedMovies: input } },
           { new: true, runValidators: true }
         );
+        console.log(updatedUser);
         return updatedUser;
       }
       throw new AuthenticationError("You need to be logged in!");

@@ -7,20 +7,14 @@ const movieSchema = new Schema({
     required: true,
   },
   release: {
-    type: Date,
-  },
-  description: {
     type: String,
-    required: true,
   },
-  screenTime: {
+  poster: {
     type: String,
-    required: true,
   },
-  // reviews: {
-  //   type: Schema.Types.ObjectId,
-  //   ref: "Review",
-  // },
+  movieId: {
+    type: String,
+  },
 });
 
 module.exports = movieSchema;

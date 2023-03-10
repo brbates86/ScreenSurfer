@@ -45,9 +45,7 @@ const SearchMovies = () => {
         movieId: movie.imdbID,
         title: movie.Title,
         poster: movie.Poster,
-        release: movie.Released,
-        description: movie.Plot,
-        screenTime: movie.Runtime,
+        release: movie.Year,
       }));
 
       setSearchedMovies(movieData);
@@ -61,14 +59,19 @@ const SearchMovies = () => {
     const movieToSave = searchedMovies.find(
       (movie) => movie.movieId === movieId
     );
+    console.log(movieToSave);
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
       return false;
     }
     try {
-      const response = await saveMovie(movieToSave, token);
-      if (!response.ok) {
+      const response = await saveMovie({
+        variables: {
+          input: movieToSave,
+        },
+      });
+      if (!response) {
         throw new Error("something went wrong!");
       }
       setSavedMovieIds([...savedMovieIds, movieToSave.movieId]);
@@ -78,7 +81,7 @@ const SearchMovies = () => {
   };
 
   return (
-    <>
+    <div>
       <Jumbotron fluid className="text-light bg-dark">
         <Container>
           <h1>Search for Movies!</h1>
@@ -96,7 +99,7 @@ const SearchMovies = () => {
               </Col>
               <Col xs={12} md={4}>
                 <Button type="submit" variant="success" size="lg">
-                  Submit Search
+                  ACTION!
                 </Button>
               </Col>
             </Form.Row>
@@ -110,13 +113,15 @@ const SearchMovies = () => {
             ? `Viewing ${searchedMovies.length} results:`
             : "Search for a movie to begin"}
         </h2>
-        <CardColumns>
+
+        <CardColumns className="searchedMovies">
           {searchedMovies.map((movie) => {
             return (
-              <Card key={movie.movieId} border="dark">
-                {movie.image ? (
+              <Card className="cCard" key={movie.movieId} border="dark">
+                {movie.poster ? (
                   <Card.Img
-                    src={movie.image}
+                    className="cardImg"
+                    src={movie.poster}
                     alt={`The cover for ${movie.title}`}
                     variant="top"
                   />
@@ -124,7 +129,7 @@ const SearchMovies = () => {
                 <Card.Body>
                   <Card.Title>{movie.title}</Card.Title>
                   <p className="small">Released: {movie.release}</p>
-                  <Card.Text>{movie.description}</Card.Text>
+                  <Card.Text></Card.Text>
                   {Auth.loggedIn() && (
                     <Button
                       disabled={savedMovieIds?.some(
@@ -146,7 +151,7 @@ const SearchMovies = () => {
           })}
         </CardColumns>
       </Container>
-    </>
+    </div>
   );
 };
 
