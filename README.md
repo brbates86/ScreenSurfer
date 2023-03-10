@@ -1,4 +1,4 @@
-# MyMovieTracker
+# ScreenSurfer
 
 The ScreenSurfer App is a tool that allows you to keep track of the movies you have watched or plan to watch. With this app, you can easily manage your movie collection, rate movies, and get recommendations based on your preferences.
 
@@ -19,6 +19,10 @@ Once you have installed the app, you can start adding movies to your watchlist b
 
 To view your watchlist, simply navigate to the "Watchlist" tab. To view your watched movies, navigate to the "History" tab. To view your ratings and get recommendations, navigate to the "Ratings" tab.
 
+# Screenshot
+![Screenshot 2023-03-09 at 4 41 34 PM](https://user-images.githubusercontent.com/110508944/224192321-0b3a5de1-79e6-47db-867a-aca80010ee3d.png)
+![Screenshot 2023-03-09 at 4 41 56 PM](https://user-images.githubusercontent.com/110508944/224192339-a269e493-19ac-4791-8b62-c4d75cb32e8a.png)
+![Screenshot 2023-03-09 at 4 42 14 PM](https://user-images.githubusercontent.com/110508944/224192354-2d281b7e-b60e-469c-8251-5fbfe5a90e40.png)
 
 
 # Support
