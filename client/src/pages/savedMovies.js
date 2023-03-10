@@ -1,4 +1,9 @@
 import React from "react";
+import { QUERY_ME } from "../utils/queries";
+import { REMOVE_MOVIE } from "../utils/mutations";
+import Auth from "../utils/auth";
+import { removeMovieId } from "../utils/localStorage";
+import { useQuery, useMutation } from "@apollo/react-hooks";
 import {
   Jumbotron,
   Container,
@@ -6,13 +11,6 @@ import {
   Card,
   Button,
 } from "react-bootstrap";
-//import chakraTheme from '@chakra-ui/theme'
-//import { getMe, deleteMovie } from '../utils/omdbAPI';
-import { QUERY_ME } from "../utils/queries";
-import { REMOVE_MOVIE } from "../utils/mutations";
-import Auth from "../utils/auth";
-import { removeMovieId } from "../utils/localStorage";
-import { useQuery, useMutation } from "@apollo/react-hooks";
 
 const SavedMovies = () => {
   const { loading, data } = useQuery(QUERY_ME);
@@ -63,9 +61,10 @@ const SavedMovies = () => {
         <CardColumns>
           {userData.savedMovies?.map((movie) => {
             return (
-              <Card key={movie.movieId} border="dark">
+              <Card className="cCard" key={movie.movieId} border="dark">
                 {movie.poster ? (
                   <Card.Img
+                    className="cardImg"
                     src={movie.poster}
                     alt={`The cover for ${movie.title}`}
                     variant="top"
