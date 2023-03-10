@@ -174,4 +174,20 @@
     font-weight: 300;
     font-style: italic;
   }
+
+  /* .cardImg {
+    width: 33%,
+  } */
+   
+  .searchedMovies {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    
+  }
+
+.cCard {
+  width: 15vw
+}
+  
   

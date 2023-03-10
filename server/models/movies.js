@@ -15,18 +15,6 @@ const movieSchema = new Schema({
   movieId: {
     type: String,
   },
-  description: {
-    type: String,
-    required: true,
-  },
-  screenTime: {
-    type: String,
-    required: true,
-  },
-  // reviews: {
-  //   type: Schema.Types.ObjectId,
-  //   ref: "Review",
-  // },
 });
 
 module.exports = movieSchema;

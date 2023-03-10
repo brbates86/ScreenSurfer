@@ -13,16 +13,14 @@ const typeDefs = gql`
     movieId: ID
     title: String
     release: String
-    description: String
-    screenTime: String
+    poster: String
   }
 
   input MovieInput {
     movieId: ID
     title: String
     release: String
-    description: String
-    screenTime: String
+    poster: String
   }
 
   type Auth {

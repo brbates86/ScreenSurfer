@@ -34,8 +34,7 @@ export const SAVE_MOVIE = gql`
         movieId
         title
         release
-        description
-        screenTime
+        poster
       }
     }
   }
@@ -51,8 +50,7 @@ export const REMOVE_MOVIE = gql`
         movieId
         title
         release
-        description
-        screenTime
+        poster
       }
     }
   }

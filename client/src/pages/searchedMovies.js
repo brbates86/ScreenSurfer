@@ -46,8 +46,6 @@ const SearchMovies = () => {
         title: movie.Title,
         poster: movie.Poster,
         release: movie.Year,
-        description: movie.Plot,
-        screenTime: movie.Runtime,
       }));
 
       setSearchedMovies(movieData);
@@ -61,6 +59,7 @@ const SearchMovies = () => {
     const movieToSave = searchedMovies.find(
       (movie) => movie.movieId === movieId
     );
+    console.log(movieToSave);
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
@@ -115,16 +114,13 @@ const SearchMovies = () => {
             : "Search for a movie to begin"}
         </h2>
 
-        <CardColumns>
+        <CardColumns className="searchedMovies">
           {searchedMovies.map((movie) => {
             return (
-              <Card
-                key={movie.movieId}
-                style={{ width: "40rem" }}
-                border="dark"
-              >
+              <Card className="cCard" key={movie.movieId} border="dark">
                 {movie.poster ? (
                   <Card.Img
+                    className="cardImg"
                     src={movie.poster}
                     alt={`The cover for ${movie.title}`}
                     variant="top"
@@ -133,7 +129,7 @@ const SearchMovies = () => {
                 <Card.Body>
                   <Card.Title>{movie.title}</Card.Title>
                   <p className="small">Released: {movie.release}</p>
-                  <Card.Text>{movie.description}</Card.Text>
+                  <Card.Text></Card.Text>
                   {Auth.loggedIn() && (
                     <Button
                       disabled={savedMovieIds?.some(

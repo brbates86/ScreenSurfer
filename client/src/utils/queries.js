@@ -10,8 +10,7 @@ export const QUERY_ME = gql`
         movieId
         title
         release
-        description
-        screenTime
+        poster
       }
     }
   }
